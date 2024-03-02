@@ -1,5 +1,5 @@
 # Dummy Server For Check Response
-Dummy Server allows you to dummy any server or service via HTTP or HTTPS, such as a REST or RPC service.
+Dummy Server allows you to receive all request via HTTP or HTTPS, such as a REST or RPC service.
 
 This is useful in the following scenarios:
 
