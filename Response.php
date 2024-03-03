@@ -16,7 +16,7 @@ class Response
     private static function getDirContents($dir, &$results = array()) {
         $files = scandir($dir);
 
-        foreach ($files as $key => $value) {
+        foreach ($files as $value) {
             $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
             if (!is_dir($path)) {
                 $results[] = $path;
@@ -32,7 +32,7 @@ class Response
     }
 
     /**
-     * @return array[]
+     * @return array
      */
     public static function getRoute()
     {
