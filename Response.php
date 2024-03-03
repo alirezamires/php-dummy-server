@@ -17,9 +17,8 @@ class Response
                 header("Content-disposition: attachment; filename=\"" . basename($routes[$uri]) . "\"");
                 echo '[';
                 foreach ($files as $route) {
-
                     if (is_dir($routes[$uri].'/'.$route)) {
-
+                    continue;
                     } else if ($route != "." && $route != "..") {
 
                        echo file_get_contents($routes[$uri].'/'.$route);
