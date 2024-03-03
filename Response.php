@@ -12,6 +12,12 @@ class Response
         }else{
             header("HTTP/1.1 404 Not Found");
         }
+        die();
+    }
+    public static function noContentSend()
+    {
+        header("HTTP/1.1 201 Created");
+        die();
     }
     private static function getDirContents($dir, &$results = array()) {
         $files = scandir($dir);
