@@ -6,20 +6,27 @@ class Response
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $routes = self::getRoute();
-        if(array_key_exists($uri,$routes)){
+        if (array_key_exists($uri, $routes)) {
             header('Content-Type: application/json');
+
+            if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+                self::update($routes[$uri]);
+            }
             echo file_get_contents($routes[$uri]);
-        }else{
+        } else {
             header("HTTP/1.1 404 Not Found");
         }
         die();
     }
+
     public static function noContentSend()
     {
         header("HTTP/1.1 201 Created");
         die();
     }
-    private static function getDirContents($dir, &$results = array()) {
+
+    private static function getDirContents($dir, &$results = array())
+    {
         $files = scandir($dir);
 
         foreach ($files as $value) {
@@ -32,7 +39,7 @@ class Response
             }
         }
 
-        return array_filter($results,static function ($item){
+        return array_filter($results, static function ($item) {
             return filesize($item) > 0;
         });
     }
@@ -40,12 +47,25 @@ class Response
     /**
      * @return array
      */
-    public static function getRoute()
+    public static function getRoute(): array
     {
         $routes = array_map(function ($item) {
             return [str_replace("\\", '/', str_replace('.json', '', str_replace(realpath(__dir__ . '/dummy-data/'), '', $item))) => $item];
         }, self::getDirContents(__dir__ . '/dummy-data/'));
 
         return array_merge(...$routes);
+    }
+
+    /**
+     * @param $routes
+     * @return void
+     */
+    private static function update($routes): void
+    {
+        try {
+            file_put_contents($routes, json_encode(json_decode(file_get_contents("php://input"))));
+        } catch (JsonException $exception) {
+
+        }
     }
 }
