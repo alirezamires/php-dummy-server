@@ -12,7 +12,23 @@ class Response
             if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
                 self::update($routes[$uri]);
             }
-            echo file_get_contents($routes[$uri]);
+            if(is_dir($routes[$uri])){
+                $files = scandir($routes[$uri]);
+                header("Content-disposition: attachment; filename=\"" . basename($routes[$uri]) . "\"");
+                echo '[';
+                foreach ($files as $route) {
+
+                    if (is_dir($routes[$uri].'/'.$route)) {
+
+                    } else if ($route != "." && $route != "..") {
+
+                       echo file_get_contents($routes[$uri].'/'.$route);
+                    }
+                }
+                echo ']';
+            }else{
+                echo file_get_contents($routes[$uri]);
+            }
         } else {
             header("HTTP/1.1 404 Not Found");
         }
