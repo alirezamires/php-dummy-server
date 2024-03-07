@@ -6,7 +6,7 @@ class Response
 {
     public static function send()
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = self::getURL();
         $routes = self::getRoute();
         if (array_key_exists($uri, $routes)) {
             header('Content-Type: application/json');
@@ -71,5 +71,17 @@ class Response
         } catch (JsonException $exception) {
             throw new $exception;
         }
+    }
+
+    /**
+     * @return array|false|int|string|null
+     */
+    public static function getURL(): string|array|int|null|false
+    {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        if (!str_ends_with($uri, '/')) {
+            $uri .= '/';
+        }
+        return $uri;
     }
 }

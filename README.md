@@ -19,11 +19,25 @@ To start using PHP Dummy Server, you need to require the plugin via Composer.
 ```bash 
 composer require alirezamires/php-dummy-server --dev
 ```
+## Config
+Open file named ``server.php`` to configuration:
+```php
+namespace Alirezamires\DummyServer;
+require_once __DIR__ . '/vendor/autoload.php';
+define("PHP_DUMMY_SERVER_ROOT_DIR", __DIR__ . '/data');
+
+Request::save();
+Response::send();
+```
+Config root directory for dummy server's data:
+```php
+define("PHP_DUMMY_SERVER_ROOT_DIR", __DIR__ . '/data');
+```
 ## Usage
 Run this comment in terminal:
 
 ```bash 
-php -S localhost:8000 index.php
+php -S localhost:8000 server.php
 ```
 ### Index Route
 

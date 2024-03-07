@@ -1,5 +1,17 @@
 {
     "name": "alirezamires/dummy-server",
+    "type": "library",
+    "version": "dev-master",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "keywords": [
+        "dev",
+        "dummy",
+        "mock",
+        "server"
+    ],
+    "homepage": "https://github.com/alirezamires/php-dummy-server",
+    "license": "MIT",
     "description": "Dummy Server allows you to receive all request via HTTP or HTTPS, such as a REST or RPC service.",
     "autoload": {
         "files": [
@@ -15,7 +27,8 @@
     "authors": [
         {
             "name": "Alireza Mires",
-            "email": "alirezamires@gmail.com"
+            "email": "alirezamires@gmail.com",
+            "homepage": "https://github.com/alirezamires"
         }
     ],
     "require": {}
