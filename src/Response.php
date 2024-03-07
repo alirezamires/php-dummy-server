@@ -1,5 +1,7 @@
 <?php
 namespace Alirezamires\DummyServer;
+use JsonException;
+
 class Response
 {
     public static function send()
@@ -68,7 +70,7 @@ class Response
         try {
             file_put_contents($routes, json_encode(json_decode(file_get_contents("php://input"))));
         } catch (JsonException $exception) {
-
+            throw new $exception;
         }
     }
 }
