@@ -20,7 +20,7 @@ To start using PHP Dummy Server, you need to require the plugin via Composer.
 composer require alirezamires/php-dummy-server --dev
 ```
 ## Config
-Open file named ``server.php`` to configuration:
+Open file named ``server.php``:
 ```php
 namespace Alirezamires\DummyServer;
 require_once __DIR__ . '/vendor/autoload.php';
