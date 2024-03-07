@@ -8,7 +8,6 @@ class Response
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $routes = self::getRoute();
-        var_dump($routes);
         if (array_key_exists($uri, $routes)) {
             header('Content-Type: application/json');
             if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
