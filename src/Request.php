@@ -1,5 +1,5 @@
 <?php
-
+namespace Alirezamires\DummyServer;
 class Request
 {
     static function save()

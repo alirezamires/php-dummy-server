@@ -1,3 +1,4 @@
 .idea
 /dummy-data/*
 /requests/*
+/vendor/

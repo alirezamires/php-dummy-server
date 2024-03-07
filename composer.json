@@ -1,0 +1,22 @@
+{
+    "name": "alirezamires/dummy-server",
+    "description": "Dummy Server allows you to receive all request via HTTP or HTTPS, such as a REST or RPC service.",
+    "autoload": {
+        "files": [
+            "root_dir.php"
+        ],
+        "psr-4": {
+            "Alirezamires\\DummyServer\\": "src/"
+        }
+    },
+    "scripts": {
+        "run-server": "@php -S localhost:8080 index.php"
+    },
+    "authors": [
+        {
+            "name": "Alireza Mires",
+            "email": "alirezamires@gmail.com"
+        }
+    ],
+    "require": {}
+}

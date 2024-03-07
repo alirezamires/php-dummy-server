@@ -1,5 +1,8 @@
-<?php 
-require_once __DIR__.'/Request.php';
-require_once __DIR__.'/Response.php';
+<?php
+
+namespace Alirezamires\DummyServer;
+require_once __DIR__ . '/vendor/autoload.php';
+
+
 Request::save();
 Response::send();
