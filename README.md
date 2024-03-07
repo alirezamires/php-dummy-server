@@ -40,7 +40,9 @@ Run this comment in terminal:
 php -S localhost:8000 server.php
 ```
 ### Index Route
-
+In root directory make folder name ``dummy-data`` and then make json file named ``.json``
+> [!WARNING]
+> Server ignore empty files.
 ## License
 
 [MIT](https://github.com/electron/electron/blob/main/LICENSE)
