@@ -20,7 +20,7 @@ To start using PHP Dummy Server, you need to require the plugin via Composer.
 composer require alirezamires/php-dummy-server --dev
 ```
 ## Config
-Open file named ``server.php`` to configuration:
+Open file named ``server.php``:
 ```php
 namespace Alirezamires\DummyServer;
 require_once __DIR__ . '/vendor/autoload.php';
@@ -40,7 +40,12 @@ Run this comment in terminal:
 php -S localhost:8000 server.php
 ```
 ### Index Route
-In root directory make folder name ``dummy-data`` and then make json file named ``.json``
+In root directory make folder name ``dummy-data`` and then make json file named ``.json``:
+```json
+{
+    "test":"test"
+}
+```
 > [!WARNING]
 > Server ignore empty files.
 ### Post Method

@@ -31,5 +31,8 @@
             "homepage": "https://github.com/alirezamires"
         }
     ],
+    "config":{
+        "process-timeout":0
+    },
     "require": {}
 }
