@@ -43,6 +43,11 @@ php -S localhost:8000 server.php
 In root directory make folder name ``dummy-data`` and then make json file named ``.json``
 > [!WARNING]
 > Server ignore empty files.
+### Post Method
+In sent route regenerate json file with named as id 
+### Put Method 
+If exists json file update to sent values
+
 ## License
 
 [MIT](https://github.com/electron/electron/blob/main/LICENSE)
