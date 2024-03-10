@@ -13,6 +13,9 @@ class Response
             if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
                 self::update($routes[$uri]);
             }
+            if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+                self::delete($routes[$uri]);
+            }
             if(is_dir($routes[$uri])){
                 $files = scandir($routes[$uri]);
                 header("Content-disposition: attachment; filename=\"" . basename($routes[$uri]) . "\"");
@@ -40,7 +43,7 @@ class Response
         die();
     }
 
-    public static function noContentSend()
+    private static function noContentSend()
     {
         header("HTTP/1.1 201 Created");
         die();
@@ -51,7 +54,7 @@ class Response
     /**
      * @return array
      */
-    public static function getRoute(): array
+    private static function getRoute(): array
     {
         $routes = array_map(function ($item) {
             return [str_replace("\\", '/', str_replace('.json', '', str_replace(realpath(root_dir()  . '/dummy-data/'), '', $item))) => $item];
@@ -61,22 +64,27 @@ class Response
     }
 
     /**
-     * @param $routes
+     * @param $route
      * @return void
      */
-    private static function update($routes): void
+    private static function update($route): void
     {
         try {
-            file_put_contents($routes, json_encode(json_decode(file_get_contents("php://input"))));
+            file_put_contents($route, json_encode(json_decode(file_get_contents("php://input"))));
         } catch (JsonException $exception) {
             throw new $exception;
         }
     }
 
+    private static function delete($routes): void
+    {
+        unlink($routes);
+        self::noContentSend();
+    }
     /**
      * @return array|false|int|string|null
      */
-    public static function getURL(): string|array|int|null|false
+    private static function getURL(): string|array|int|null|false
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         if (!str_ends_with($uri, '/')) {
