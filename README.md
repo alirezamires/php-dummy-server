@@ -22,6 +22,16 @@ composer require alirezamires/php-dummy-server --dev
 Edit the `server.php` file:
 
 Define the Data Directory: Set the PHP_DUMMY_SERVER_ROOT_DIR constant to specify the location for storing dummy server data (e.g., responses).
+```php
+<?php
+
+namespace Alirezamires\DummyServer;
+require_once __DIR__ . '/vendor/autoload.php';
+define("PHP_DUMMY_SERVER_ROOT_DIR", __DIR__ . '/data');
+
+Request::save();
+Response::send();
+```
  - Run the Server
 
 Start the server using the following command in your terminal:
