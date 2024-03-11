@@ -10,7 +10,7 @@ Isolated Teams: Allows development teams to work independently even if the real 
 Simplified Debugging: Isolate issues during deployment and debugging by simulating specific services locally.
 ## Getting Started
 
-1. Installation
+  - Installation
 
 Install the library using Composer:
 
@@ -18,12 +18,12 @@ Install the library using Composer:
 composer require alirezamires/php-dummy-server --dev
 ```
 Verwende den Code mit Vorsicht.
-2. Configuration
+ -  Configuration
 
 Edit the `server.php` file:
 
 Define the Data Directory: Set the PHP_DUMMY_SERVER_ROOT_DIR constant to specify the location for storing dummy server data (e.g., responses).
-3. Run the Server
+ - Run the Server
 
 Start the server using the following command in your terminal:
 
@@ -55,8 +55,8 @@ Now, any GET request to http://localhost:8000/user/1 will return the data from t
 
 ## Additional Notes:
 
-The server ignores empty files.
-For more advanced usage and configuration options, refer to the official documentation (if available).
+ - The server ignores empty files.
+ - For more advanced usage and configuration options, refer to the official documentation (if available).
 ## License:
 
 This library is licensed under the MIT License.
