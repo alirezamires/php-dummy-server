@@ -37,11 +37,11 @@ Create a folder named dummy-data in the root directory specified in step 2.
 Inside the `dummy-data` folder, create JSON files to define response data for different scenarios.
 Supported HTTP Methods:
 
-GET: Retrieves the data from the corresponding JSON file.
-POST: Creates a new JSON file with a unique identifier based on the request data.
-PUT: Updates the existing JSON file with the request data.
-DELETE: Deletes the existing JSON file.
-Example: Defining a Response for a GET Request
+GET: Retrieves the data from the corresponding JSON file.\
+POST: Creates a new JSON file with a unique identifier based on the request data.\
+PUT: Updates the existing JSON file with the request data.\
+DELETE: Deletes the existing JSON file.\
+Example: Defining a Response for a GET Request.
 
 Create a file named `1.json` inside the `dummy-data/user` folder with the following content:
 
@@ -51,7 +51,6 @@ Create a file named `1.json` inside the `dummy-data/user` folder with the follow
   "email": "john.doe@example.com"
 }
 ```
-Verwende den Code mit Vorsicht.
 Now, any GET request to http://localhost:8000/user/1 will return the data from the user.json file.
 
 ## Additional Notes:
