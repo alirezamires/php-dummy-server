@@ -56,7 +56,6 @@ Now, any GET request to http://localhost:8000/user/1 will return the data from t
 ## Additional Notes:
 
  - The server ignores empty files.
- - For more advanced usage and configuration options, refer to the official documentation.
 ## License:
 
 This library is licensed under the MIT License.
