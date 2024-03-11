@@ -1,4 +1,4 @@
 .idea
-/dummy-data/*
-/requests/*
+/data/dummy-data/*
+/data/requests-logs/*
 /vendor/

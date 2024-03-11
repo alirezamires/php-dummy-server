@@ -1,5 +1,7 @@
 <?php
+
 namespace Alirezamires\DummyServer;
+
 use JsonException;
 
 class Response
@@ -16,25 +18,25 @@ class Response
             if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
                 self::delete($routes[$uri]);
             }
-            if(is_dir($routes[$uri])){
+            if (is_dir($routes[$uri])) {
                 $files = scandir($routes[$uri]);
                 header("Content-disposition: attachment; filename=\"" . basename($routes[$uri]) . "\"");
-                if(count($files) === 3){
-                    echo file_get_contents($routes[$uri].'/'.$files[2]);
-                }else{
+                if (count($files) === 3) {
+                    echo file_get_contents($routes[$uri] . '/' . $files[2]);
+                } else {
                     echo '[';
                     foreach ($files as $route) {
-                        if (is_dir($routes[$uri].'/'.$route)) {
+                        if (is_dir($routes[$uri] . '/' . $route)) {
                             continue;
                         } else if ($route != "." && $route != "..") {
 
-                            echo file_get_contents($routes[$uri].'/'.$route);
+                            echo file_get_contents($routes[$uri] . '/' . $route);
                         }
                     }
                     echo ']';
                 }
 
-            }else{
+            } else {
                 echo file_get_contents($routes[$uri]);
             }
         } else {
@@ -43,12 +45,11 @@ class Response
         die();
     }
 
-    private static function noContentSend()
+    public static function noContentSend()
     {
         header("HTTP/1.1 201 Created");
         die();
     }
-
 
 
     /**
@@ -56,8 +57,10 @@ class Response
      */
     private static function getRoute(): array
     {
-        $routes = array_map(function ($item) {
-            return [str_replace("\\", '/', str_replace('.json', '', str_replace(realpath(root_dir()  . '/dummy-data/'), '', $item))) => $item];
+        $routes = array_map(function ($file) {
+            $route = str_replace("\\", '/', str_replace('.json', '', str_replace(realpath(root_dir() . '/dummy-data/'), '', $file)));
+            $route .= str_ends_with($route, '/') ? '' : '/';
+            return [$route => $file];
         }, Helper::getDirContents(root_dir() . '\\dummy-data\\'));
 
         return array_merge(...$routes);
@@ -81,6 +84,7 @@ class Response
         unlink($routes);
         self::noContentSend();
     }
+
     /**
      * @return array|false|int|string|null
      */
