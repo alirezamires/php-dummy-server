@@ -17,7 +17,6 @@ Install the library using Composer:
 ```Bash
 composer require alirezamires/php-dummy-server --dev
 ```
-Verwende den Code mit Vorsicht.
  -  Configuration
 
 Edit the `server.php` file:
@@ -30,7 +29,6 @@ Start the server using the following command in your terminal:
 ```Bash
 php -S localhost:8000 server.php
 ```
-Verwende den Code mit Vorsicht.
 Defining Responses
 
 Create a folder named dummy-data in the root directory specified in step 2.
