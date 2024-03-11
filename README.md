@@ -41,7 +41,7 @@ php -S localhost:8000 server.php
 ```
 ## Defining Responses
 
-Create a folder named dummy-data in the root directory specified in step 2.
+Create a folder named dummy-data in the root directory specified in configuration.
 Inside the `dummy-data` folder, create JSON files to define response data for different scenarios.
 Supported HTTP Methods:
 
