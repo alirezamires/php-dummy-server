@@ -39,7 +39,8 @@ Run this comment in terminal:
 ```bash 
 php -S localhost:8000 server.php
 ```
-### Index Route
+
+## Response Data
 In root directory make folder name ``dummy-data`` and then make json file named ``.json``:
 ```json
 {
@@ -48,6 +49,10 @@ In root directory make folder name ``dummy-data`` and then make json file named 
 ```
 > [!WARNING]
 > Server ignore empty files.
+
+### Get Method
+
+if exists json file sent as response;
 ### Post Method
 In sent route regenerate json file with named as id.
 ### Put Method 
