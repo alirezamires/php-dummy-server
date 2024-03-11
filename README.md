@@ -49,10 +49,11 @@ In root directory make folder name ``dummy-data`` and then make json file named 
 > [!WARNING]
 > Server ignore empty files.
 ### Post Method
-In sent route regenerate json file with named as id 
+In sent route regenerate json file with named as id.
 ### Put Method 
-If exists json file update to sent values
-
+If exists json file update to sent values.
+### Delete Method 
+If exists json file delete.
 ## License
 
 [MIT](https://github.com/electron/electron/blob/main/LICENSE)
