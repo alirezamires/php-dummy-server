@@ -45,11 +45,12 @@ Example: Defining a Response for a GET Request
 
 Create a file named `1.json` inside the `dummy-data/user` folder with the following content:
 
-JSON
+```JSON
 {
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
+```
 Verwende den Code mit Vorsicht.
 Now, any GET request to http://localhost:8000/user/1 will return the data from the user.json file.
 
