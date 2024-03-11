@@ -39,7 +39,7 @@ Start the server using the following command in your terminal:
 ```Bash
 php -S localhost:8000 server.php
 ```
-Defining Responses
+## Defining Responses
 
 Create a folder named dummy-data in the root directory specified in step 2.
 Inside the `dummy-data` folder, create JSON files to define response data for different scenarios.
