@@ -58,7 +58,7 @@ Create a file named `1.json` inside the `dummy-data/user` folder with the follow
   "email": "john.doe@example.com"
 }
 ```
-Now, any GET request to http://localhost:8000/user/1 will return the data from the user.json file.
+Now, any GET request to http://localhost:8000/user/1 will return the data from the 1.json file.
 
 ## Additional Notes:
 
