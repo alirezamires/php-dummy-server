@@ -5,8 +5,17 @@ namespace Alirezamires\DummyServer;
 use JetBrains\PhpStorm\NoReturn;
 use JsonException;
 
+/**
+ *  make response instance
+ */
 class Response
 {
+    /**
+     * send response to client side
+     *
+     * @return void
+     * @throws JsonException
+     */
     #[NoReturn] public static function send(): void
     {
         self::setHeaders();
@@ -47,6 +56,10 @@ class Response
         die();
     }
 
+    /**
+     * send response as [no content]
+     * @return void
+     */
     #[NoReturn] public static function noContentSend(): void
     {
         header("HTTP/1.1 201 Created");
@@ -55,6 +68,8 @@ class Response
 
 
     /**
+     * get route from folder
+     *
      * @return array
      */
     private static function getRoute(): array
@@ -69,7 +84,10 @@ class Response
     }
 
     /**
+     * update date was stored in folder.
+     *
      * @param $route
+     *
      * @return void
      */
     private static function update($route): void
@@ -81,6 +99,13 @@ class Response
         }
     }
 
+    /**
+     * remove stored json file
+     *
+     * @param $routes
+     *
+     * @return void
+     */
     private static function delete($routes): void
     {
         unlink($routes);
@@ -88,6 +113,8 @@ class Response
     }
 
     /**
+     * get url from request
+     *
      * @return array|false|int|string|null
      */
     private static function getURL(): string|array|int|null|false
@@ -99,7 +126,12 @@ class Response
         return $uri;
     }
 
-    private function setHeaders()
+    /**
+     * add headers to response
+     *
+     * @return void
+     */
+    private static function setHeaders()
     {
 
     }
