@@ -4,8 +4,18 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+/**
+ *
+ */
 class Helper
 {
+    /**
+     * Get Directory Size
+     *
+     * @param $path
+     *
+     * @return int
+     */
     public static function GetDirectorySize($path){
         $total = 0;
         $path = realpath($path);
@@ -16,7 +26,16 @@ class Helper
         }
         return $total;
     }
-    public static function getDirContents($dir, &$results = array())
+
+    /**
+     * get directory contents [recursive]
+     *
+     * @param $dir
+     * @param array $results
+     *
+     * @return array
+     */
+    public static function getDirContents($dir, array &$results = array()): array
     {
         $files = scandir($dir);
 
