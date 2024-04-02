@@ -10,38 +10,45 @@ Isolated Teams: Allows development teams to work independently even if the real 
 Simplified Debugging: Isolate issues during deployment and debugging by simulating specific services locally.
 ## Getting Started
 
-  - Installation
+### Installation
 
 Install the library using Composer:
 
 ```Bash
 composer require alirezamires/php-dummy-server --dev
 ```
-Verwende den Code mit Vorsicht.
- -  Configuration
+### Configuration
 
 Edit the `server.php` file:
 
 Define the Data Directory: Set the PHP_DUMMY_SERVER_ROOT_DIR constant to specify the location for storing dummy server data (e.g., responses).
- - Run the Server
+```php
+<?php
+
+namespace Alirezamires\DummyServer;
+require_once __DIR__ . '/vendor/autoload.php';
+define("PHP_DUMMY_SERVER_ROOT_DIR", __DIR__ . '/data');
+
+Request::save();
+Response::send();
+```
+### Run the Server
 
 Start the server using the following command in your terminal:
 
 ```Bash
 php -S localhost:8000 server.php
 ```
-Verwende den Code mit Vorsicht.
-Defining Responses
+## Defining Responses
 
-Create a folder named dummy-data in the root directory specified in step 2.
-Inside the `dummy-data` folder, create JSON files to define response data for different scenarios.
+Create a folder named dummy-data in the root directory specified in configuration.
+Inside the `dummy-data` folder, create JSON files to define response data for different scenarios.\
 Supported HTTP Methods:
-
-GET: Retrieves the data from the corresponding JSON file.\
-POST: Creates a new JSON file with a unique identifier based on the request data.\
-PUT: Updates the existing JSON file with the request data.\
-DELETE: Deletes the existing JSON file.\
-Example: Defining a Response for a GET Request.
+ - GET: Retrieves the data from the corresponding JSON file.
+ - POST: Creates a new JSON file with a unique identifier based on the request data.
+ - PUT: Updates the existing JSON file with the request data.
+ - DELETE: Deletes the existing JSON file.
+### Example: Defining a Response for a GET Request.
 
 Create a file named `1.json` inside the `dummy-data/user` folder with the following content:
 
@@ -51,7 +58,7 @@ Create a file named `1.json` inside the `dummy-data/user` folder with the follow
   "email": "john.doe@example.com"
 }
 ```
-Now, any GET request to http://localhost:8000/user/1 will return the data from the user.json file.
+Now, any GET request to http://localhost:8000/user/1 will return the data from the 1.json file.
 
 ## Additional Notes:
 
