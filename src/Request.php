@@ -20,8 +20,7 @@ class Request
         $zip = new ZipArchive;
         $open_status = $zip->open(root_dir() . '/requests-logs/log.zip', ZipArchive::CREATE);
         if ($open_status !== true) {
-            var_dump($open_status);
-            die();
+            return;
         }
         $file_path = root_dir() . '/requests-logs/request-' . $time . '.json';
         $data = json_encode(['get' => $_GET, 'post' => $_POST, 'cookie' => $_COOKIE, 'headers' => getallheaders(), 'uri' => $_SERVER['REQUEST_URI']]);
