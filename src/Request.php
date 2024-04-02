@@ -3,6 +3,7 @@
 namespace Alirezamires\DummyServer;
 
 use JetBrains\PhpStorm\NoReturn;
+use ZipArchive;
 
 /**
  *
@@ -15,9 +16,19 @@ class Request
      */
     static function receive(): void
     {
-        $name = root_dir() . '/requests-logs/request-' . date('y-m-d-H-i-s') . '.json';
+        $time = date('y-m-d-H-i-s');
+        $zip = new ZipArchive;
+        $open_status = $zip->open(root_dir() . '/requests-logs/log.zip', ZipArchive::CREATE);
+        if ($open_status !== true) {
+            var_dump($open_status);
+            die();
+        }
+        $file_path = root_dir() . '/requests-logs/request-' . $time . '.json';
         $data = json_encode(['get' => $_GET, 'post' => $_POST, 'cookie' => $_COOKIE, 'headers' => getallheaders(), 'uri' => $_SERVER['REQUEST_URI']]);
-        file_put_contents($name, $data);
+        file_put_contents($file_path, $data);
+        $zip->addFile($file_path, 'request-' . $time . '.json');
+        $zip->close();
+        unlink($file_path);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             self::storeAsJson();
         }
