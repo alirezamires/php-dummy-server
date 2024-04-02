@@ -1,8 +1,18 @@
 <?php
+
 namespace Alirezamires\DummyServer;
 
+use JetBrains\PhpStorm\NoReturn;
+
+/**
+ *
+ */
 class Request
 {
+    /**
+     * store data send log
+     * @return void
+     */
     static function receive(): void
     {
         $name = root_dir() . '/requests-logs/request-' . date('y-m-d-H-i-s') . '.json';
@@ -13,11 +23,15 @@ class Request
         }
     }
 
-    static function storeAsJson(): void
+    /**
+     * store send post date [Create Request]
+     * @return void
+     */
+    #[NoReturn] static function storeAsJson(): void
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         if (is_numeric(basename($uri))) {
-            $uri = parse_url(str_replace('/'.basename($uri),'',$_SERVER['REQUEST_URI']), PHP_URL_PATH);
+            $uri = parse_url(str_replace('/' . basename($uri), '', $_SERVER['REQUEST_URI']), PHP_URL_PATH);
         }
         if (!is_dir(root_dir() . '/dummy-data/' . $uri)) {
             mkdir(root_dir() . '/dummy-data/' . $uri);
