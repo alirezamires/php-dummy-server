@@ -1,8 +1,9 @@
 <?php
 namespace Alirezamires\DummyServer;
+
 class Request
 {
-    static function save()
+    static function receive(): void
     {
         $name = root_dir() . '/requests-logs/request-' . date('y-m-d-H-i-s') . '.json';
         $data = json_encode(['get' => $_GET, 'post' => $_POST, 'cookie' => $_COOKIE, 'headers' => getallheaders(), 'uri' => $_SERVER['REQUEST_URI']]);
@@ -12,7 +13,7 @@ class Request
         }
     }
 
-    static function storeAsJson()
+    static function storeAsJson(): void
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         if (is_numeric(basename($uri))) {

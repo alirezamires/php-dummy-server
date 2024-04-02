@@ -2,12 +2,14 @@
 
 namespace Alirezamires\DummyServer;
 
+use JetBrains\PhpStorm\NoReturn;
 use JsonException;
 
 class Response
 {
-    public static function send()
+    #[NoReturn] public static function send(): void
     {
+        self::setHeaders();
         $uri = self::getURL();
         $routes = self::getRoute();
         if (array_key_exists($uri, $routes)) {
@@ -45,7 +47,7 @@ class Response
         die();
     }
 
-    public static function noContentSend()
+    #[NoReturn] public static function noContentSend(): void
     {
         header("HTTP/1.1 201 Created");
         die();
@@ -95,5 +97,10 @@ class Response
             $uri .= '/';
         }
         return $uri;
+    }
+
+    private function setHeaders()
+    {
+
     }
 }
