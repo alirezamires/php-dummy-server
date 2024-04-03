@@ -92,11 +92,7 @@ class Response
      */
     private static function update($route): void
     {
-        try {
-            file_put_contents($route, json_encode(json_decode(file_get_contents("php://input"))));
-        } catch (JsonException $exception) {
-            throw new $exception;
-        }
+        file_put_contents($route, json_encode(json_decode(file_get_contents("php://input"))));
     }
 
     /**

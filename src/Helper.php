@@ -53,4 +53,10 @@ class Helper
             return filesize($item) > 0;
         });
     }
+
+    static function sizeToHumanConvert($size): string
+    {
+        $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
+        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
+    }
 }
