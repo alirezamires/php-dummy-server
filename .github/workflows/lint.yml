@@ -1,10 +1,23 @@
-on: [ push, pull_request ]
-name: Main
+name: PHP Code Style Check
+
+on:
+  push:
+    branches: [ master ]  # Adjust branches as needed
+  pull_request:
+
 jobs:
   php-cs-fixer:
-    name: PHP-CS-Fixer
-    runs-on: ubuntu-latest
+    name: Run PHP CS Fixer
+    runs-on: ubuntu-latest  # Or a different compatible runner
+
     steps:
       - uses: actions/checkout@v3
-      - name: PHP-CS-Fixer
-        uses: docker://oskarstark/php-cs-fixer-ga
+
+      - name: Use php-cs-fixer action
+        uses: docker://oskarstark/php-cs-fixer-ga  # Oskar Stark's action
+
+      - name: Run PHP CS Fixer (optional)
+        # If you prefer more control over arguments
+        run: |
+          # Replace with your desired arguments (refer to php-cs-fixer docs)
+          php-cs-fixer fix --diff .
