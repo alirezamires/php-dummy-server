@@ -20,4 +20,4 @@ jobs:
         # If you prefer more control over arguments
         run: |
           # Replace with your desired arguments (refer to php-cs-fixer docs)
-          php-cs-fixer fix --diff --allow-risky=yes.
+          php-cs-fixer fix --allow-risky=yes.
