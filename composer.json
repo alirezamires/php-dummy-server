@@ -12,7 +12,7 @@
     ],
     "homepage": "https://github.com/alirezamires/php-dummy-server",
     "license": "MIT",
-    "description": "Dummy Server allows you to receive all request via HTTP or HTTPS, such as a REST or RPC service.",
+    "description": "The PHP Dummy Server is a library that allows you to create a mock server environment for testing applications that rely on external APIs or services",
     "autoload": {
         "files": [
             "root_dir.php"
