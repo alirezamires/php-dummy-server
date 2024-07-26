@@ -1,41 +1,35 @@
 <?php
+
 namespace Alirezamires\DummyServer;
+
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-/**
- *
- */
 class Helper
 {
     /**
-     * Get Directory Size
-     *
-     * @param $path
+     * Get Directory Size.
      *
      * @return int
      */
-    public static function GetDirectorySize($path){
+    public static function GetDirectorySize($path)
+    {
         $total = 0;
         $path = realpath($path);
-        if($path!==false && $path!='' && file_exists($path)){
-            foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+        if ($path !== false && $path != '' && file_exists($path)) {
+            foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object) {
                 $total += $object->getSize();
             }
         }
+
         return $total;
     }
 
     /**
-     * get directory contents [recursive]
-     *
-     * @param $dir
-     * @param array $results
-     *
-     * @return array
+     * get directory contents [recursive].
      */
-    public static function getDirContents($dir, array &$results = array()): array
+    public static function getDirContents($dir, array &$results = []): array
     {
         $files = scandir($dir);
 
@@ -43,7 +37,7 @@ class Helper
             $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
             if (!is_dir($path)) {
                 $results[] = $path;
-            } else if ($value != "." && $value != "..") {
+            } elseif ($value != '.' && $value != '..') {
                 Helper::getDirContents($path, $results);
                 $results[] = $path;
             }
@@ -54,9 +48,10 @@ class Helper
         });
     }
 
-    static function sizeToHumanConvert($size): string
+    public static function sizeToHumanConvert($size): string
     {
-        $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
-        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
+        $unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
+
+        return @round($size / pow(1024, $i = floor(log($size, 1024))), 2) . ' ' . $unit[$i];
     }
 }
