@@ -22,7 +22,8 @@
         }
     },
     "scripts": {
-        "run-server": "@php -S localhost:8080 index.php"
+        "run-server": "@php -S localhost:8080 index.php",
+        "test" : "vendor/bin/phpunit --testdox tests"
     },
     "authors": [
         {
@@ -36,5 +37,8 @@
     },
     "require": {
         "ext-zip": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "11"
     }
 }
