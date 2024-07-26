@@ -2,3 +2,4 @@
 /data/dummy-data/*
 /data/requests-logs/*
 /vendor/
+/.php-cs-fixer.cache
