@@ -1,23 +1,35 @@
-name: PHP Code Style Check
+name: fix-code-style
 
 on:
   push:
-    branches: [ master ]  # Adjust branches as needed
+    branches: [main, develop]
   pull_request:
+    branches: [main, develop]
 
 jobs:
-  php-cs-fixer:
-    name: Run PHP CS Fixer
-    runs-on: ubuntu-latest  # Or a different compatible runner
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.3]
+        stability: [prefer-stable]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Use php-cs-fixer action
-        uses: docker://oskarstark/php-cs-fixer-ga  # Oskar Stark's action
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: php-cs-fixer
 
-      - name: Run PHP CS Fixer (optional)
-        # If you prefer more control over arguments
-        run: |
-          # Replace with your desired arguments (refer to php-cs-fixer docs)
-          php-cs-fixer fix --allow-risky=yes.
+      - name: Run PHP Linting
+        run: php-cs-fixer fix
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Apply php-cs-fixer
