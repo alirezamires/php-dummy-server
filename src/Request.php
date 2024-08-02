@@ -5,24 +5,20 @@ namespace Alirezamires\DummyServer;
 use JetBrains\PhpStorm\NoReturn;
 use ZipArchive;
 
-/**
- *
- */
 class Request
 {
     /**
-     * store data send log
-     * @return void
+     * store data send log.
      */
-    static function receive(): void
+    public static function receive(): void
     {
         $time = date('y-m-d-H-i-s');
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
         $open_status = $zip->open(root_dir() . '/requests-logs/log.zip', ZipArchive::CREATE);
         if ($open_status !== true) {
             return;
         }
-        $file_path = root_dir() . '/requests-logs/request-' . '-' . $time . '.json';
+        $file_path = root_dir() . '/requests-logs/request--' . $time . '.json';
         $data = json_encode([
             'get' => $_GET,
             'post' => $_POST,
@@ -30,7 +26,7 @@ class Request
             'headers' => getallheaders(),
             'uri' => $_SERVER['REQUEST_URI'],
             'server' => $_SERVER,
-            'memory' => Helper::sizeToHumanConvert(memory_get_usage())
+            'memory' => Helper::sizeToHumanConvert(memory_get_usage()),
         ]);
         file_put_contents($file_path, $data);
         $zip->addFile($file_path, 'request-' . $time . '.json');
@@ -49,15 +45,18 @@ class Request
     }
 
     /**
-     * store send post date [Create Request]
-     * @return void
+     * store send post date [Create Request].
      */
-    #[NoReturn] static function storeAsJson(): void
+    #[NoReturn]
+    public static function storeAsJson(): void
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         if (is_numeric(basename($uri))) {
-            $uri = parse_url(str_replace('/' . basename($uri), '',
-                $_SERVER['REQUEST_URI']), PHP_URL_PATH);
+            $uri = parse_url(str_replace(
+                '/' . basename($uri),
+                '',
+                $_SERVER['REQUEST_URI']
+            ), PHP_URL_PATH);
         }
         if (!is_dir(root_dir() . '/dummy-data/' . $uri)) {
             mkdir(root_dir() . '/dummy-data/' . $uri, recursive: true);
