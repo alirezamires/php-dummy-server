@@ -36,8 +36,15 @@ class Request
         $zip->addFile($file_path, 'request-' . $time . '.json');
         $zip->close();
         unlink($file_path);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             self::storeAsJson();
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            self::update();
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            self::delete(Router::getCurrentRoute());
         }
     }
 
@@ -60,6 +67,28 @@ class Request
         $file = (count($files) - 1) . '.json';
         file_put_contents($path . '/' . $file, json_encode($_POST));
         echo json_encode([...$_POST, 'id' => (count($files) - 1)]);
-        Response::noContentSend();
+    }
+    /**
+     * update date was stored in folder.
+     *
+     * @param $route
+     *
+     * @return void
+     */
+    private static function update($route): void
+    {
+        file_put_contents($route, json_encode(json_decode(file_get_contents("php://input"))));
+    }
+
+    /**
+     * remove stored json file
+     *
+     * @param $routes
+     *
+     * @return void
+     */
+    private static function delete($routes): void
+    {
+        unlink($routes);
     }
 }
