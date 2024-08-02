@@ -6,20 +6,27 @@ class Router
 {
     public static function getUrlFiles(): bool|array
     {
-        return scandir(self::getCurrentRoute());
+        return scandir(self::getUri());
     }
+
     public static function routeIsDirectory(): bool
     {
-        return is_dir(self::getCurrentRoute());
+        return is_dir(self::getUri());
     }
+
     public static function routeExists(): bool
     {
         return array_key_exists(self::getURL(), self::getRoute());
     }
+
     public static function getCurrentRoute()
     {
+        if (!self::routeExists()) {
+            return null;
+        }
         return self::getRoute()[self::getURL()];
     }
+
     /**
      * get route from folder
      *
@@ -27,7 +34,7 @@ class Router
      */
     public static function getRoute(): array
     {
-        return once(function (){
+        return once(function () {
             $routes = array_map(function ($file) {
                 $route = str_replace("\\", '/', str_replace('.json', '', str_replace(realpath(root_dir() . '/dummy-data/'), '', $file)));
                 $route .= str_ends_with($route, '/') ? '' : '/';
@@ -37,7 +44,6 @@ class Router
             return array_merge(...$routes);
         });
     }
-
 
 
     /**
@@ -52,5 +58,13 @@ class Router
             $uri .= '/';
         }
         return $uri;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public static function getUri(): mixed
+    {
+        return self::getCurrentRoute() ?? root_dir() . '\\dummy-data\\' . self::getURL();
     }
 }
