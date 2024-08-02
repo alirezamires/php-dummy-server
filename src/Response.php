@@ -3,19 +3,17 @@
 namespace Alirezamires\DummyServer;
 
 use JetBrains\PhpStorm\NoReturn;
-use JsonException;
 
 /**
- *  make response instance
+ *  make response instance.
  */
 class Response
 {
     /**
-     * send response to client side
-     *
-     * @return void
+     * send response to client side.
      */
-    #[NoReturn] public static function send(): void
+    #[NoReturn]
+    public static function send(): void
     {
         header('Content-Type: application/json');
         if (Router::routeIsDirectory()) {
@@ -28,32 +26,34 @@ class Response
                 foreach ($files as $index => $file) {
                     if (is_dir(Router::getUri() . '/' . $file)) {
                         continue;
-                    } else if ($file != "." && $file != "..") {
+                    } elseif ($file != '.' && $file != '..') {
                         echo file_get_contents(Router::getUri() . '/' . $file);
-                        if($last_key !== $index){
+                        if ($last_key !== $index) {
                             echo ',';
                         }
                     }
                 }
                 echo ']';
             }
+
             return;
         }
         if (!Router::routeExists()) {
-            header("HTTP/1.1 404 Not Found");
+            header('HTTP/1.1 404 Not Found');
+
             return;
         }
         echo file_get_contents(Router::getCurrentRoute());
     }
 
     /**
-     * send response as [no content]
-     * @return void
+     * send response as [no content].
      */
     #[
-        NoReturn] public static function noContentSend(): void
+        NoReturn]
+    public static function noContentSend(): void
     {
-        header("HTTP/1.1 201 Created");
-        die();
+        header('HTTP/1.1 201 Created');
+        exit;
     }
 }
