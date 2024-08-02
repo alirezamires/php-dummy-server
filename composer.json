@@ -1,18 +1,17 @@
 {
-    "name": "alirezamires/dummy-server",
+    "name": "alirezamires/php-dummy-server",
     "type": "library",
-    "version": "dev-master",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "keywords": [
-        "dev",
-        "dummy",
+        "api",
+        "testing-tools",
         "mock",
         "server"
     ],
     "homepage": "https://github.com/alirezamires/php-dummy-server",
     "license": "MIT",
-    "description": "The PHP Dummy Server is a library that allows you to create a mock server environment for testing applications that rely on external APIs or services",
+    "description": "It simplifies testing by enabling you to define various responses (success, failure) and isolate your application from external dependencies",
     "autoload": {
         "files": [
             "root_dir.php"
@@ -36,6 +35,7 @@
         "process-timeout":0
     },
     "require": {
+        "php": "^8",
         "ext-zip": "*",
         "spatie/once": "^3.1"
     },
