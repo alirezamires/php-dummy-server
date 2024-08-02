@@ -67,24 +67,17 @@ class Request
         file_put_contents($path . '/' . $file, json_encode($_POST));
         echo json_encode([...$_POST, 'id' => (count($files) - 1)]);
     }
+
     /**
      * update date was stored in folder.
-     *
-     * @param $route
-     *
-     * @return void
      */
     private static function update($route): void
     {
-        file_put_contents($route, json_encode(json_decode(file_get_contents("php://input"))));
+        file_put_contents($route, json_encode(json_decode(file_get_contents('php://input'))));
     }
 
     /**
-     * remove stored json file
-     *
-     * @param $routes
-     *
-     * @return void
+     * remove stored json file.
      */
     private static function delete($routes): void
     {
